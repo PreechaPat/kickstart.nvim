@@ -680,8 +680,8 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
-        pyright = {},
+        basedpyright = {},
+        gopls = {},
         rust_analyzer = {},
         nextflow_ls = {},
         bashls = {},
@@ -962,6 +962,9 @@ require('lazy').setup({
       auto_install = true,
       highlight = {
         enable = true,
+        disable = function(lang, bufnr) -- Disable in large buffers
+          return vim.api.nvim_buf_line_count(bufnr) > 2000
+        end,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
