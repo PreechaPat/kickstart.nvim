@@ -283,14 +283,6 @@ require('lazy').setup({
       },
     },
   },
-  {
-    'NeogitOrg/neogit',
-    dependencies = {
-      'nvim-lua/plenary.nvim', -- required
-      'sindrets/diffview.nvim', -- optional - Diff integration
-      'nvim-telescope/telescope.nvim', -- optional
-    },
-  },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -1029,26 +1021,6 @@ require('lazy').setup({
 })
 
 require 'custom.style'
-
--- Need this for LSP to work... maybe there is a better way to add them later.
--- https://github.com/nvim-lua/kickstart.nvim/pull/1475
-vim.filetype.add {
-  extension = {
-    nf = 'nextflow', -- Replace 'foo' with your extension, and 'python' with the desired filetype
-  },
-}
-
-vim.lsp.config('nextflow_ls', {
-  cmd = { 'java', '-jar', vim.fn.expand '~/.local/nextflow-language-server-all.jar' },
-  filetypes = { 'nextflow' },
-  settings = {
-    nextflow = {
-      files = {
-        exclude = { '.git', '.nf-test', 'work' },
-      },
-    },
-  },
-})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
