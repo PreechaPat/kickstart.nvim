@@ -653,6 +653,10 @@ require('lazy').setup({
             return diagnostic_message[diagnostic.severity]
           end,
         },
+        jump = {
+          float = true,
+        },
+        update_in_insert = false,
       }
 
       -- LSP servers and clients are able to communicate to each other what features they support.

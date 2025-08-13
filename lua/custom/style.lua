@@ -1,9 +1,13 @@
 vim.opt.wrap = false
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = 'number'
 
+-- Toggle on and off for diagnostics.
 local diagnostics_virtual_text = true
-vim.keymap.set('n', '<leader>dw', function()
+vim.keymap.set('n', '<leader>tw', function()
   diagnostics_virtual_text = not diagnostics_virtual_text
   vim.diagnostic.config { virtual_text = diagnostics_virtual_text }
 end, { desc = 'Toggle warnings in diagnostics' })
