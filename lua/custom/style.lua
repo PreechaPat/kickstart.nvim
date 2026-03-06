@@ -16,21 +16,9 @@ end, { desc = 'Toggle warnings in diagnostics' })
 -- https://github.com/nvim-lua/kickstart.nvim/pull/1475
 vim.filetype.add {
   extension = {
-    nf = 'nextflow', -- Replace 'foo' with your extension, and 'python' with the desired filetype
+    nf = 'nextflow',
   },
 }
-
-vim.lsp.config('nextflow_ls', {
-  cmd = { 'java', '-jar', vim.fn.expand '~/.local/nextflow-language-server-all.jar' },
-  filetypes = { 'nextflow' },
-  settings = {
-    nextflow = {
-      files = {
-        exclude = { '.git', '.nf-test', 'work' },
-      },
-    },
-  },
-})
 
 vim.opt.clipboard = 'unnamedplus'
 

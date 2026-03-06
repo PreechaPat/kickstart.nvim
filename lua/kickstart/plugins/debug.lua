@@ -22,6 +22,7 @@ return {
     'jay-babu/mason-nvim-dap.nvim',
 
     -- Add your own debuggers here
+    'mfussenegger/nvim-dap-python',
     'leoluz/nvim-dap-go',
   },
   keys = {
@@ -95,6 +96,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'debugpy',
       },
     }
 
@@ -144,5 +146,9 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+
+    -- Install python specific config
+    --
+    require('dap-python').setup '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
   end,
 }
