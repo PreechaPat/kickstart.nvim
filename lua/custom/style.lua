@@ -10,14 +10,6 @@ vim.keymap.set('n', '<leader>tw', function()
   vim.diagnostic.config { virtual_text = diagnostics_virtual_text }
 end, { desc = 'Toggle warnings in diagnostics' })
 
--- Need this for LSP to work... maybe there is a better way to add them later.
--- https://github.com/nvim-lua/kickstart.nvim/pull/1475
-vim.filetype.add {
-  extension = {
-    nf = 'nextflow',
-  },
-}
-
 vim.opt.clipboard = 'unnamedplus'
 
 -- If you want to be explicit about using OSC 52

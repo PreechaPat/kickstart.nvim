@@ -1,15 +1,11 @@
 -- debug.lua
 --
--- Shows how to use the DAP plugin to debug your code.
---
 -- Primarily focused on configuring the debugger for Go, but can
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
@@ -150,5 +146,19 @@ return {
     -- Install python specific config
     --
     require('dap-python').setup '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
+
+    vim.g.rustaceanvim = {
+      dap = {
+        adapter = function()
+          local extension_path = vim.fn.stdpath 'data' .. '/mason/packages/codelldb/extension/'
+          local codelldb_path = extension_path .. 'adapter/codelldb'
+          local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
+          if vim.fn.has 'mac' == 1 then
+            liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
+          end
+          return require('rustaceanvim.config').get_codelldb_adapter(codelldb_path, liblldb_path)
+        end,
+      },
+    }
   end,
 }
