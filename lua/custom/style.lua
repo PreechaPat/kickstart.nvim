@@ -12,17 +12,16 @@ end, { desc = 'Toggle warnings in diagnostics' })
 
 vim.opt.clipboard = 'unnamedplus'
 
--- If you want to be explicit about using OSC 52
--- if vim.fn.has 'nvim-0.10' == 1 then
---   vim.g.clipboard = {
---     name = 'OSC 52',
---     copy = {
---       ['+'] = require('vim.ui.clipboard.osc52').copy '+',
---       ['*'] = require('vim.ui.clipboard.osc52').copy '*',
---     },
---     paste = {
---       ['+'] = require('vim.ui.clipboard.osc52').paste '+',
---       ['*'] = require('vim.ui.clipboard.osc52').paste '*',
---     },
---   }
--- end
+if vim.fn.exists '$SSH_CONNECTION' == 1 then
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+      ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+    },
+    paste = {
+      ['+'] = require('vim.ui.clipboard.osc52').paste '+',
+      ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+    },
+  }
+end

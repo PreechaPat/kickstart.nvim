@@ -16,9 +16,4 @@ return {
   keys = {
     { '<leader>ea', '<cmd>AerialToggle!<cr>', desc = 'Toggle Aerial' },
   },
-  -- config = function(_, opts)
-  --   require('aerial').setup(opts)
-  --   -- Optional keymaps
-  --   vim.keymap.set('n', '<leader>ta', '<cmd>AerialToggle!<CR>', { desc = 'Toggle Aerial' })
-  -- end,
 }
