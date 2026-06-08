@@ -77,7 +77,7 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+        'delve@1.22.2',
         'debugpy',
       },
     }
@@ -105,8 +105,8 @@ return {
     }
 
     -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    vim.api.nvim_set_hl(0, 'DapBreak', { bg = '#4A1515' })
+    vim.api.nvim_set_hl(0, 'DapStop', { bg = '#423205' })
     -- local breakpoint_icons = vim.g.have_nerd_font
     --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
     --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
@@ -115,6 +115,8 @@ return {
     --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
     --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
     -- end
+    vim.fn.sign_define('DapBreakpoint', { linehl = 'DapBreak' })
+    vim.fn.sign_define('DapStopped', { linehl = 'DapStop' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
@@ -132,17 +134,5 @@ return {
     -- Install python specific config
     --
     require('dap-python').setup '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
-
-    vim.g.rustaceanvim = {
-      dap = {
-        adapter = function()
-          local extension_path = vim.fn.stdpath 'data' .. '/mason/packages/codelldb/extension/'
-          local codelldb_path = extension_path .. 'adapter/codelldb'
-          local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
-          if vim.fn.has 'mac' == 1 then liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib' end
-          return require('rustaceanvim.config').get_codelldb_adapter(codelldb_path, liblldb_path)
-        end,
-      },
-    }
   end,
 }

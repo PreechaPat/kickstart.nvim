@@ -521,18 +521,6 @@ require('lazy').setup({
           filetypes = { 'html' },
         },
 
-        -- ts_ls = {
-        --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-        --   init_options = {
-        --     plugins = {
-        --       {
-        --         name = '@vue/typescript-plugin',
-        --         location = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server',
-        --         languages = { 'vue' },
-        --       },
-        --     },
-        --   },
-        -- },
         vtsls = {
           filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
           settings = {
@@ -693,17 +681,13 @@ require('lazy').setup({
           if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then return end
           return 'make install_jsregexp'
         end)(),
-        dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
-          --    See the README about individual language/framework/plugin snippets:
-          --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
-        },
+        -- dependencies = {
+        --   --    https://github.com/rafamadriz/friendly-snippets
+        --   {
+        --     'rafamadriz/friendly-snippets',
+        --     config = function() require('luasnip.loaders.from_vscode').lazy_load() end,
+        --   },
+        -- },
         opts = {},
       },
       'folke/lazydev.nvim',
@@ -712,19 +696,6 @@ require('lazy').setup({
     --- @type blink.cmp.Config
     opts = {
       keymap = {
-        -- 'default' (recommended) for mappings similar to built-in completions
-        --   <c-y> to accept ([y]es) the completion.
-        --    This will auto-import if your LSP supports it.
-        --    This will expand snippets if the LSP sent a snippet.
-        -- 'super-tab' for tab to accept
-        -- 'enter' for enter to accept
-        -- 'none' for no mappings
-        --
-        -- For an understanding of why the 'default' preset is recommended,
-        -- you will need to read `:help ins-completion`
-        --
-        -- No, but seriously. Please read `:help ins-completion`, it is really good!
-        --
         -- All presets have the following mappings:
         -- <tab>/<s-tab>: move to right/left of your snippet expansion
         -- <c-space>: Open menu or open docs if already open
