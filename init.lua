@@ -831,6 +831,9 @@ require('lazy').setup({
         callback = function(args)
           local buf, filetype = args.buf, args.match
 
+          -- Disable treesitter for files longer than 1000 lines
+          if vim.api.nvim_buf_line_count(buf) > 1000 then return end
+
           local language = vim.treesitter.language.get_lang(filetype)
           if not language then return end
 
