@@ -540,6 +540,7 @@ require('lazy').setup({
           },
         },
 
+        copilot = {},
         -- Vue language server
         vue_ls = {},
 
