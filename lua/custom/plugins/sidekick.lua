@@ -8,8 +8,11 @@ return {
           backend = 'tmux',
           enabled = true,
         },
-        kiro = {
-          cmd = 'kiro-cli',
+        tools = {
+          kiro = {
+            cmd = { 'kiro-cli' }, -- Must be inside 'tools' and structured as a table
+            enabled = true,
+          },
         },
       },
     },
